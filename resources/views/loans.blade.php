@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Recovery Management - Dashboard</title>
+    <title>Loan Recovery Management - Loans</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -14,9 +14,9 @@
             <h2>LoanRMS</h2>
         </div>
         <ul class="nav-links">
-            <li><a href="dashboard.html" class="active"><span class="material-icons">dashboard</span>Dashboard</a></li>
+            <li><a href="dashboard.html"><span class="material-icons">dashboard</span>Dashboard</a></li>
             <li><a href="borrowers.html"><span class="material-icons">people</span>Borrowers</a></li>
-            <li><a href="loans.html"><span class="material-icons">account_balance_wallet</span>Loans</a></li>
+            <li><a href="loans.html" class="active"><span class="material-icons">account_balance_wallet</span>Loans</a></li>
             <li><a href="payments.html"><span class="material-icons">payments</span>Payments</a></li>
             <li><a href="collections.html"><span class="material-icons">gavel</span>Collections</a></li>
             <li><a href="settings.html"><span class="material-icons">settings</span>Settings</a></li>
@@ -29,48 +29,26 @@
 
     <div class="main-content">
         <header>
-            <h1>Dashboard</h1>
+            <h1>Loans</h1>
             <div class="search-bar">
-                <input type="text" placeholder="Search...">
+                <input type="text" placeholder="Search loans...">
                 <span class="material-icons">search</span>
             </div>
             <div class="header-icons">
-                <span class="material-icons">notifications</span>
-                <span class="material-icons">message</span>
+                <button class="btn add-new"><span class="material-icons">add_circle</span> Add New Loan</button>
             </div>
         </header>
 
-        <div class="dashboard-overview">
-            <div class="card">
-                <h3>Total Loans</h3>
-                <p>1,250</p>
-                <span class="material-icons icon-bg">account_balance_wallet</span>
-            </div>
-            <div class="card">
-                <h3>Outstanding Amount</h3>
-                <p>$12,500,000</p>
-                <span class="material-icons icon-bg">payments</span>
-            </div>
-            <div class="card">
-                <h3>Overdue Loans</h3>
-                <p>125</p>
-                <span class="material-icons icon-bg">warning</span>
-            </div>
-            <div class="card">
-                <h3>Collected Today</h3>
-                <p>$50,000</p>
-                <span class="material-icons icon-bg">check_circle</span>
-            </div>
-        </div>
-
-        <div class="recent-activity">
-            <h2>Recent Loan Activities</h2>
+        <div class="data-table">
+            <h2>All Loan Details</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Loan ID</th>
                         <th>Borrower</th>
                         <th>Amount</th>
+                        <th>Interest</th>
+                        <th>Term</th>
                         <th>Due Date</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -78,36 +56,55 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>LRM001</td>
-                        <td>John Doe</td>
+                        <td>LN001</td>
+                        <td>Alice Johnson</td>
                         <td>$5,000</td>
-                        <td>2023-11-15</td>
-                        <td class="status overdue">Overdue</td>
-                        <td><button class="btn view">View</button></td>
-                    </tr>
-                    <tr>
-                        <td>LRM002</td>
-                        <td>Jane Smith</td>
-                        <td>$10,000</td>
-                        <td>2023-12-01</td>
+                        <td>8%</td>
+                        <td>12 months</td>
+                        <td>2024-05-20</td>
                         <td class="status active">Active</td>
-                        <td><button class="btn view">View</button></td>
+                        <td>
+                            <button class="btn view">View</button>
+                            <button class="btn edit">Edit</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>LRM003</td>
-                        <td>Peter Jones</td>
+                        <td>LN002</td>
+                        <td>Bob Williams</td>
+                        <td>$10,000</td>
+                        <td>6%</td>
+                        <td>24 months</td>
+                        <td>2025-01-10</td>
+                        <td class="status active">Active</td>
+                        <td>
+                            <button class="btn view">View</button>
+                            <button class="btn edit">Edit</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>LN003</td>
+                        <td>Charlie Davis</td>
                         <td>$2,500</td>
+                        <td>10%</td>
+                        <td>6 months</td>
                         <td>2023-11-10</td>
                         <td class="status paid">Paid</td>
-                        <td><button class="btn view">View</button></td>
+                        <td>
+                            <button class="btn view">View</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td>LRM004</td>
-                        <td>Sarah Brown</td>
+                        <td>LN004</td>
+                        <td>Alice Johnson</td>
                         <td>$7,500</td>
-                        <td>2023-11-20</td>
-                        <td class="status active">Active</td>
-                        <td><button class="btn view">View</button></td>
+                        <td>7%</td>
+                        <td>18 months</td>
+                        <td>2024-12-01</td>
+                        <td class="status overdue">Overdue</td>
+                        <td>
+                            <button class="btn view">View</button>
+                            <button class="btn edit">Edit</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
