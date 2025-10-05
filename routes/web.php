@@ -14,3 +14,7 @@ Route::get('/payments', [Templatecontroller::class, 'payments']);
 Route::get('/settings', [Templatecontroller::class, 'settings']);
 
 Route::get('/collections', [Templatecontroller::class, 'collection']);
+
+Route::get('/collections', [Templatecontroller::class, 'collection']);
+
+Route::get('/dashboard', [Templatecontroller::class, 'dashboard']);
