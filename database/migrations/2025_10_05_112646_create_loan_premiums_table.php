@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('loan_premiums', function (Blueprint $table) {
             $table->id();
+            $table->integer('loan_id');
             $table->string('loan_premium_number')->nullable();
             $table->decimal('amount', 15, 2);
             $table->string('method');
-            $table->integer('loan_id');
             $table->integer('created_by');
             $table->timestamps();
         });

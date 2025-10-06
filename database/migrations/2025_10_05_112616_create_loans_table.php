@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
+            $table->integer('customer_id');
             $table->string('loan_number')->nullable();
             $table->decimal('amount', 15, 2);
             $table->decimal('interest_rate', 5, 2);
@@ -21,7 +22,6 @@ return new class extends Migration
             $table->date('due_date');
             $table->string('status')->default('active');
             $table->longText('note')->nullable();
-            $table->string('phone_number');
             $table->integer('created_by');
             $table->timestamps();
         });

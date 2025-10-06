@@ -1,9 +1,9 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1>Add New Loan</h1> 
+    <h1>Add New Loan</h1>
     <div class="row">
-    
+
     <div class="mt-4 col-6" >
         @if(session('success'))
             <div class="alert alert-success">
@@ -19,13 +19,22 @@
             @endforeach
         </ul>
     </div>
-    
+
 @endif
 
 <div class="card">
   <div class="card-body">
-            <form action="/Loans/store" method="POST">
+            <form action="/loans/store" method="POST">
             @csrf
+                <div class="mb-3">
+                    <label for="customer" class="form-label">Customer</label>
+                    <select class="form-select" name="customer">
+                        <option disabled selected value="">Select Customer</option>
+                        @foreach ($customers as $customer)
+                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" name="name" >
