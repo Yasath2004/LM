@@ -5,7 +5,6 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="d-flex align-items-center gap-3">
-            <img src="https://cdn-icons-png.flaticon.com/512/456/456212.png" alt="Customers Icon" width="50" height="50">
             <h2 class="fw-bold text-primary mb-0">All Customers</h2>
         </div>
         <a class="btn btn-primary shadow-sm px-4 py-2" href="/customers/create">

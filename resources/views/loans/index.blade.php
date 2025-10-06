@@ -6,7 +6,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold text-success d-flex align-items-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png" width="45" class="me-2" alt="Loan Icon">
+            {{-- <img src="https://cdn-icons-png.flaticon.com/512/3135/3135706.png" width="45" class="me-2" alt="Loan Icon"> --}}
             All Loans
         </h2>
         <a class="btn btn-success shadow-sm px-4 py-2" href="/loans/create">
