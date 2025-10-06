@@ -15,9 +15,15 @@ class LoanController extends Controller
     {
 
         $request->validate([
-            'name' => ['required', 'min:3'],
-            'phone' => 'required',
-            'nic' => ['required',"digits:12" ,'unique:customers,nic'],
+            'loan_number' => ['required', 'min:3'],
+            'Amount' => 'required',
+            'interst_rate' => ['required',"digits:12" ,'unique:customers,nic'],
+            'loan_number' => ['required', 'min:3'],
+            'Amount' => 'required',
+            'interst_rate' => ['required',"digits:12" ,'unique:customers,nic'],
+            'loan_number' => ['required', 'min:3'],
+            'Amount' => 'required',
+            'interst_rate' => ['required',"digits:12" ,'unique:customers,nic'],
         ]);
 
         Loan::create([
@@ -36,7 +42,7 @@ class LoanController extends Controller
      $loans = Loan::all();   
 
         return view('loans.index',[
-            'customers' => $loans
+            'loans' => $loans
         ]);
     }
 }
