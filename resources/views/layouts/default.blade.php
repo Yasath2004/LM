@@ -79,13 +79,13 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/customers">Customers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Loans</a>
+                <a class="nav-link" href="/loans">Loans</a>
               </li>
             </ul>
           </div>

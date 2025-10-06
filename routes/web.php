@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Templatecontroller;
+use App\Http\Controllers\HomeController;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
+// home route
 
+Route::get('/home', [HomeController::class, 'index']);
 
 // costomer routes
 Route::get('/customers/create', [CustomerController::class, 'create']);

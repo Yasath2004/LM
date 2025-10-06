@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-    <h1>Create Customer</h1> 
+    <h1>Add New Loan</h1> 
     <div class="row">
     
     <div class="mt-4 col-6" >
@@ -24,7 +24,7 @@
 
 <div class="card">
   <div class="card-body">
-            <form action="/customers/store" method="POST">
+            <form action="/Loans/store" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -36,6 +36,14 @@
             </div>
             <div class="mb-3">
                 <label for="nic" class="form-label">NIC</label>
+                <input type="text" class="form-control" id="nic" name="nic" >
+            </div>
+                        <div class="mb-3">
+                <label for="nic" class="form-label">Amount</label>
+                <input type="text" class="form-control" id="nic" name="nic" >
+            </div>
+                        <div class="mb-3">
+                <label for="nic" class="form-label">Term months</label>
                 <input type="text" class="form-control" id="nic" name="nic" >
             </div>
                         {{-- <div class="mb-3">
