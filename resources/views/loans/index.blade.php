@@ -75,7 +75,7 @@
     }
 
     .custom-table thead {
-        background: linear-gradient(90deg, #198754, #0b6333);
+        background: linear-gradient(90deg, #004dc9);
         color: #fff;
     }
 
@@ -113,7 +113,7 @@
     }
 
     .btn-success:hover {
-        background-color: #0b6333;
+        background-color: #004dc9;
         transform: translateY(-2px);
     }
 
