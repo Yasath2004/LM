@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index']);
 
-// costomer routes
+// customer routes
 Route::get('/customers/create', [CustomerController::class, 'create']);
 
 Route::post('/customers/store', [CustomerController::class, 'store']);
@@ -24,3 +24,5 @@ Route::get('/loans', [App\Http\Controllers\LoanController::class, 'index']);
 Route::get('/loans/create', [App\Http\Controllers\LoanController::class, 'create']);
 
 Route::post('/loans/store', [App\Http\Controllers\LoanController::class, 'store']);
+
+Route::post('/loans/{loan}/add-payment', [App\Http\Controllers\LoanPaymentController::class, 'addPayment']);

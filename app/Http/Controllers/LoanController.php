@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Loan;
 use Illuminate\Http\Request;
 
@@ -9,37 +10,37 @@ class LoanController extends Controller
 {
     public function create()
     {
-        return view('loans.create');
+        $customers = Customer::query()
+            ->select('id', 'name')
+            ->get();
+
+        return view('loans.create',[
+            'customers' => $customers,
+        ]);
     }
     public function store(Request $request )
     {
+        // validate inputs
 
-        $request->validate([
-            'loan_number' => ['required', 'min:3'],
-            'Amount' => 'required',
-            'interst_rate' => ['required',"digits:12" ,'unique:customers,nic'],
-            'loan_number' => ['required', 'min:3'],
-            'Amount' => 'required',
-            'interst_rate' => ['required',"digits:12" ,'unique:customers,nic'],
-            'loan_number' => ['required', 'min:3'],
-            'Amount' => 'required',
-            'interst_rate' => ['required',"digits:12" ,'unique:customers,nic'],
-        ]);
-
+        // create loan
         Loan::create([
-            'name' => $request->name,
-            'phone_number' => $request->phone,
-            'nic' => $request->nic,
+            'customer_id' => $request->customer_id,
+            'amount' => $request->amount,
+            'interest_rate' => $request->interest,
+            'term_months' => $request->term,
+            'start_date' => $request->start_date,
+            'due_date' => '2025-12-31', // calculate this date,
+            'note' => $request->note,
         ]);
+
 
         return redirect("loan/create")->with('success', 'Customer created successfully.');
     }
 
-
     public function index()
     {
 
-     $loans = Loan::all();   
+     $loans = Loan::all();
 
         return view('loans.index',[
             'loans' => $loans
@@ -47,5 +48,5 @@ class LoanController extends Controller
     }
 }
 
-   
+
 
