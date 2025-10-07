@@ -26,3 +26,13 @@ Route::get('/loans/create', [App\Http\Controllers\LoanController::class, 'create
 Route::post('/loans/store', [App\Http\Controllers\LoanController::class, 'store']);
 
 Route::post('/loans/{loan}/add-payment', [App\Http\Controllers\LoanPaymentController::class, 'addPayment']);
+
+//payment routes
+
+Route::get('/payments', [App\Http\Controllers\LoanPaymentController::class, 'index']);
+
+Route::get('/payments/create', [App\Http\Controllers\LoanPaymentController::class, 'create']);
+
+Route::post('/payments/store', [App\Http\Controllers\LoanPaymentController::class, 'store']);
+
+Route::delete('/payments/{premium}/delete', [App\Http\Controllers\LoanPaymentController::class, 'deletePayment']);

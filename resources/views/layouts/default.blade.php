@@ -87,6 +87,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/loans">Loans</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/loans">Payments</a>
+              </li>
             </ul>
           </div>
         </div>
