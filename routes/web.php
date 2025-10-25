@@ -1,38 +1,41 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
-use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
-// home route
-Route::redirect('/', '/home');
-Route::get('/home', [HomeController::class, 'index']);
 
-// customer routes
-Route::get('/customers/create', [CustomerController::class, 'create']);
+// auth routes
+Route::get('login', [AuthController::class, 'loginPage']);
+Route::post('login', [AuthController::class, 'authCheck'])->name('login');
 
-Route::post('/customers/store', [CustomerController::class, 'store']);
-
-Route::get('/customers', [Customercontroller::class, 'index']);
+Route::group(['middleware' => ['auth']], function () {
 
 
-//loan routes
+    // dashboard route
 
-Route::get('/loans', [App\Http\Controllers\LoanController::class, 'index']);
+    Route::redirect('/', '/home');
 
-Route::get('/loans/create', [App\Http\Controllers\LoanController::class, 'create']);
+    Route::get('/home', [HomeController::class, 'index'])->name('home');;
 
-Route::post('/loans/store', [App\Http\Controllers\LoanController::class, 'store']);
+    // customer routes
+    Route::resource('customers', CustomerController::class);
 
-Route::post('/loans/{loan}/add-payment', [App\Http\Controllers\LoanPaymentController::class, 'addPayment']);
+    //loan routes
+    Route::resource('loans', App\Http\Controllers\LoanController::class);
 
-//payment routes
+    //payment routes
 
-Route::get('/payments', [App\Http\Controllers\LoanPaymentController::class, 'index']);
+    Route::get('/payments', [App\Http\Controllers\LoanPaymentController::class, 'index']);
 
-Route::get('/payments/create', [App\Http\Controllers\LoanPaymentController::class, 'create']);
+    Route::get('/payments/create', [App\Http\Controllers\LoanPaymentController::class, 'create']);
 
-Route::post('/payments/store', [App\Http\Controllers\LoanPaymentController::class, 'store']);
+    Route::post('/payments/store', [App\Http\Controllers\LoanPaymentController::class, 'store']);
 
-Route::delete('/payments/{premium}/delete', [App\Http\Controllers\LoanPaymentController::class, 'deletePayment']);
+    Route::delete('/payments/{premium}/delete', [App\Http\Controllers\LoanPaymentController::class, 'deletePayment']);
+
+
+    Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+});
