@@ -16,7 +16,7 @@ class CustomerController extends Controller
 
         $request->validate([
             'name' => ['required', 'min:3'],
-            'phone' => 'required',
+            'phone' => ['required','digits:10'],
             'nic' => ['required',"digits:12" ,'unique:customers,nic'],
         ]);
 
@@ -33,10 +33,27 @@ class CustomerController extends Controller
     public function index()
     {
 
-     $customers = Customer::all();   
+     $customers = Customer::all();
 
         return view('customer.index',[
             'customers' => $customers
+        ]);
+    }
+
+    public function show(Customer $customer)
+    {
+        $details = [
+            'Name' => $customer->name,
+            'Phone' => $customer->phone_number,
+            'NIC' => $customer->nic,
+            'Registered Date' => $customer->created_at->toDateTimeString(),
+        ];
+
+        $loans = $customer->loans()->get();
+
+        return view('customer.show',[
+            'details' => $details,
+            'loans' => $loans,
         ]);
     }
 }

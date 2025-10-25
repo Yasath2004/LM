@@ -82,14 +82,18 @@
                 <a class="nav-link active" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/customers">Customers</a>
+                <a class="nav-link" href="{{ url('customers') }}">Customers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/loans">Loans</a>
+                <a class="nav-link" href="{{ url('loans') }}">Loans</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/loans">Payments</a>
+                <a class="nav-link" href="{{ url('loans') }}">Payments</a>
               </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url('logout') }}">Logout</a>
+                </li>
             </ul>
           </div>
         </div>
@@ -97,6 +101,26 @@
 
       <!-- Main Content Section -->
       <div class="content-box">
+          <div>
+              {{-- Success Message --}}
+              @if(session('success'))
+                  <div class="alert alert-success shadow-sm border-0 fade show animate__animated animate__fadeInDown" role="alert">
+                      ✅ {{ session('success') }}
+                  </div>
+              @endif
+
+              {{-- Error Messages --}}
+              @if ($errors->any())
+                  <div class="alert alert-danger shadow-sm border-0 animate__animated animate__fadeInDown">
+                      <strong>Please fix the following errors:</strong>
+                      <ul class="mb-0 mt-2">
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
+          </div>
         @yield('content')
       </div>
     </div>

@@ -28,12 +28,14 @@
                     @foreach ($customers as $customer)
                         <tr>
                             <td>
-                                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" 
-                                     alt="User Avatar" 
+                                <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                                     alt="User Avatar"
                                      class="rounded-circle shadow-sm"
                                      width="45" height="45">
                             </td>
-                            <td class="fw-semibold">{{ $customer->name }}</td>
+                            <td class="fw-semibold">
+                                <a href="{{ route('customers.show',$customer) }}">{{ $customer->name }}</a>
+                            </td>
                             <td>{{ $customer->phone_number }}</td>
                             <td>{{ $customer->nic }}</td>
                             <td>{{ $customer->created_at->format('Y-m-d') }}</td>
@@ -46,8 +48,8 @@
 
     {{-- Optional Illustration Below --}}
     <div class="text-center mt-5">
-        <img src="https://cdn-icons-png.flaticon.com/512/4406/4406312.png" 
-             alt="Customer Illustration" 
+        <img src="https://cdn-icons-png.flaticon.com/512/4406/4406312.png"
+             alt="Customer Illustration"
              width="280" class="img-fluid opacity-75">
         <p class="mt-3 text-muted">Effortlessly manage your customers and keep track of all records.</p>
     </div>

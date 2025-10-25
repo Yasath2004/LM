@@ -11,44 +11,25 @@
     <div class="row">
         <div class="col-lg-6 col-md-8 col-sm-12">
 
-            {{-- Success Message --}}
-            @if(session('success'))
-                <div class="alert alert-success shadow-sm border-0 fade show animate__animated animate__fadeInDown" role="alert">
-                    ✅ {{ session('success') }}
-                </div>
-            @endif
-
-            {{-- Error Messages --}}
-            @if ($errors->any())
-                <div class="alert alert-danger shadow-sm border-0 animate__animated animate__fadeInDown">
-                    <strong>Please fix the following errors:</strong>
-                    <ul class="mb-0 mt-2">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
             {{-- Customer Form --}}
             <div class="card shadow-lg border-0 rounded-3 mt-3 form-card animate__animated animate__zoomIn">
                 <div class="card-body p-4">
-                    <form action="/customers/store" method="POST">
+                    <form action="{{ route('customers.store') }}" method="POST">
                         @csrf
 
                         <div class="mb-3">
                             <label for="name" class="form-label fw-semibold">Full Name</label>
-                            <input type="text" class="form-control custom-input" id="name" name="name" placeholder="Enter customer name" required>
+                            <input value="{{ old('name') }}" type="text" class="form-control custom-input" id="name" name="name" placeholder="Enter customer name" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="phone" class="form-label fw-semibold">Phone Number</label>
-                            <input type="text" class="form-control custom-input" id="phone" name="phone" placeholder="Enter phone number" required>
+                            <input value="{{ old('phone') }}" type="text" maxlength="10" class="form-control custom-input" id="phone" name="phone" placeholder="Enter phone number" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="nic" class="form-label fw-semibold">NIC Number</label>
-                            <input type="text" class="form-control custom-input" id="nic" name="nic" placeholder="Enter NIC number" required>
+                            <input maxlength="12" value="{{ old('nic') }}" type="text" class="form-control custom-input" id="nic" name="nic" placeholder="Enter NIC number" required>
                         </div>
 
                         <button type="submit" class="btn btn-primary w-100 mt-2 shadow-sm submit-btn">
