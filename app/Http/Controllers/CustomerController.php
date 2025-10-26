@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Number;
 
 class CustomerController extends Controller
 {
@@ -49,7 +50,19 @@ class CustomerController extends Controller
             'Registered Date' => $customer->created_at->toDateTimeString(),
         ];
 
-        $loans = $customer->loans()->get();
+        $loans = $customer->loans()->get()
+        ->map(function ($loan) {
+            return [
+                'id' => $loan->id,
+                'number' => $loan->loan_number,
+                'amount' => Number::currency($loan->amount,'LKR'),
+                'balance' => Number::currency($loan->getBalance(),'LKR'),
+                'interest' => $loan->interest_rate . '%',
+                'terms' => $loan->term_months. ' Months',
+                'end_date' => $loan->due_date->toDateString(),
+                'status' => $loan->status,
+            ];
+        });
 
         return view('customer.show',[
             'details' => $details,

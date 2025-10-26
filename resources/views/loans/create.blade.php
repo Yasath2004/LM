@@ -4,65 +4,46 @@
     <h1>Add New Loan</h1>
     <div class="row">
 
-    <div class="mt-4 col-6" >
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-            @endif
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="{{ route('loans.store') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="customer" class="form-label">Customer</label>
+                            <select class="form-select" name="customer">
+                                <option disabled selected value="">Select Customer</option>
+                                @foreach ($customers as $customer)
+                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" class="form-control" id="amount" name="amount">
+                        </div>
+                        <div class="mb-3">
+                            <label for="interest" class="form-label">Interest (%)</label>
+                            <input type="number" class="form-control" id="interest" name="interest">
+                        </div>
 
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+                        <div class="mb-3">
+                            <label for="term" class="form-label">Term (Months)</label>
+                            <input type="number" class="form-control" id="term" name="term">
+                        </div>
 
-@endif
+                        <div class="mb-3">
+                            <label for="note" class="form-label">Note</label>
+                            <textarea class="form-control" id="note" name="note"></textarea>
+                        </div>
 
-<div class="card">
-  <div class="card-body">
-            <form action="/loans/store" method="POST">
-            @csrf
-                <div class="mb-3">
-                    <label for="customer" class="form-label">Customer</label>
-                    <select class="form-select" name="customer">
-                        <option disabled selected value="">Select Customer</option>
-                        @foreach ($customers as $customer)
-                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
-                        @endforeach
-                    </select>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" >
             </div>
-            <div class="mb-3">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="phone" name="phone" >
-            </div>
-            <div class="mb-3">
-                <label for="nic" class="form-label">NIC</label>
-                <input type="text" class="form-control" id="nic" name="nic" >
-            </div>
-                        <div class="mb-3">
-                <label for="nic" class="form-label">Amount</label>
-                <input type="text" class="form-control" id="nic" name="nic" >
-            </div>
-                        <div class="mb-3">
-                <label for="nic" class="form-label">Term months</label>
-                <input type="text" class="form-control" id="nic" name="nic" >
-            </div>
-                        {{-- <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div> --}}
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-  </div>
-</div>
+
+        </div>
+
 
     </div>
     </div>

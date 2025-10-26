@@ -31,7 +31,37 @@
                 </div>
 
                 <div class="card-body">
-                    asdas
+                    <table class="table table-striped">
+                        <thead>
+                            <th>Number</th>
+                            <th>Amount</th>
+                            <th>Balance</th>
+                            <th>Interest</th>
+                            <th>Terms</th>
+                            <th>End Date</th>
+                        </thead>
+
+                        <tbody>
+                            @forelse ($loans as $loan)
+                                <tr>
+                                    <td>
+                                        <a href="{{ route('loans.show', $loan['id'])  }}">
+                                            {{ $loan['number'] }}
+                                        </a>
+                                    </td>
+                                    <td>{{ $loan['amount'] }}</td>
+                                    <td>{{ $loan['balance'] }}</td>
+                                    <td>{{ $loan['interest'] }}</td>
+                                    <td>{{ $loan['terms'] }}</td>
+                                    <td>{{ $loan['end_date'] }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6">No Loans</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

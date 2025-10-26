@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoanController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,6 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('customers', CustomerController::class);
 
     //loan routes
+    Route::post('loans/{loan}/payment',[LoanController::class, 'payment'])->name('loans.payment');;
     Route::resource('loans', App\Http\Controllers\LoanController::class);
 
     //payment routes
