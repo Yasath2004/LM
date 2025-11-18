@@ -50,8 +50,11 @@ class LoanController extends Controller
             ->with('success', 'Loan created successfully.');
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('search')){
+            return $this->search($request);
+        }
 
         $loans = Loan::query()
             ->with('customer')
@@ -67,9 +70,9 @@ class LoanController extends Controller
     {
         $details = [
             'Number' => $loan->loan_number,
-            'Amount' => Number::currency($loan->amount,'LKR'),
-            'Balance' => Number::currency($loan->getBalance(),'LKR'),
-            'Interest' => $loan->interest_rate."%",
+            'Amount' => Number::currency($loan->amount, 'LKR'),
+            'Balance' => Number::currency($loan->getBalance(), 'LKR'),
+            'Interest' => $loan->interest_rate . "%",
             'Term' => $loan->term_months . " Months",
             'Start Date' => $loan->start_date,
             'End Date' => $loan->due_date,
@@ -84,7 +87,7 @@ class LoanController extends Controller
             ->map(function ($premium) {
                 return [
                     'number' => $premium->loan_premium_number,
-                    'amount' => Number::currency($premium->amount,'LKR'),
+                    'amount' => Number::currency($premium->amount, 'LKR'),
                     'method' => $premium->method,
                     'date' => $premium->created_at->toDateString(),
                 ];
@@ -94,12 +97,13 @@ class LoanController extends Controller
             'details' => $details,
             'loan' => $loan->id,
             'payments' => $payments,
+            'balance' => $loan->getBalance(),
         ]);
     }
 
     public function payment(Loan $loan, Request $request)
     {
-        if($loan->isSettled()){
+        if ($loan->isSettled()) {
             return back()
                 ->withErrors([
                     'error' => 'Loan is already settled.'
@@ -107,7 +111,7 @@ class LoanController extends Controller
         }
 
         $request->validate([
-            'amount' => ['required', 'numeric', 'gt:0'],
+            'amount' => ['required', 'numeric', 'gt:0', 'lte:' . $loan->getBalance()],
             'method' => ['required', 'in:cash,cheque,bank'],
         ]);
 
@@ -118,7 +122,7 @@ class LoanController extends Controller
 
         $loan->fresh();
 
-        if($loan->isSettled()){
+        if ($loan->isSettled()) {
             $loan->update([
                 'status' => 'settled'
             ]);
@@ -127,6 +131,33 @@ class LoanController extends Controller
 
         return back()
             ->with('success', 'Payment added successfully.');
+    }
+
+    public function recovery()
+    {
+
+        $loans = Loan::query()
+            ->with('customer')
+            ->latest()
+            ->paginate();
+
+
+        return view('loans.recovery', [
+            'loans' => $loans,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $loan = Loan::query()
+            ->where('loan_number', 'LIKE', '%' . $request->input('search') . '%')
+            ->first();
+
+        if ($loan) {
+            return redirect()->route('loans.show', $loan);
+        }
+
+        return back()->withErrors(['error' => 'Loan not found.']);
     }
 }
 

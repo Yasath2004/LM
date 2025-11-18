@@ -89,6 +89,10 @@
               </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('recovery') }}">Recovery</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url('logout') }}">Logout</a>
                 </li>
             </ul>

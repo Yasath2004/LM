@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('customers', CustomerController::class);
 
     //loan routes
+    Route::get('recovery',[LoanController::class, 'recovery'])->name('loans.recovery');
     Route::post('loans/{loan}/payment',[LoanController::class, 'payment'])->name('loans.payment');;
     Route::resource('loans', App\Http\Controllers\LoanController::class);
 

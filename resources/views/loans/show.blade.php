@@ -36,6 +36,7 @@
                         <div class="mb-3">
                             <label for="">Amount</label>
                             <input type="number" name="amount" class="form-control">
+                            <span class="form-text">LKR {{ number_format($balance,2) }} Payable</span>
                         </div>
                         <div class="mb-3">
                             <label for="">Method</label>

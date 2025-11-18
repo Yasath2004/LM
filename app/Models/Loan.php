@@ -41,11 +41,26 @@ class Loan extends Model
 
     public function getBalance()
     {
-        return $this->amount - $this->premiums()->sum('amount');
+        return $this->getAbsoluteAmount() - $this->getPaidAmount();
     }
 
     public function isSettled():bool
     {
         return $this->getBalance() <= 0;
+    }
+
+    public function getInterest(): float|int
+    {
+        return $this->amount * (($this->interest_rate/12) / 100) * $this->term_months;
+    }
+
+    public function getAbsoluteAmount()
+    {
+        return $this->amount + $this->getInterest();
+    }
+
+    public function getPaidAmount()
+    {
+        return $this->premiums()->sum('amount');
     }
 }
