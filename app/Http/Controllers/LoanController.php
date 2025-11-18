@@ -133,8 +133,12 @@ class LoanController extends Controller
             ->with('success', 'Payment added successfully.');
     }
 
-    public function recovery()
+    public function recovery(Request $request)
     {
+
+        if ($request->has('search')){
+            return $this->search($request);
+        }
 
         $loans = Loan::query()
             ->with('customer')

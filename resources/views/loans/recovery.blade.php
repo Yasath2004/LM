@@ -4,6 +4,15 @@
 @section('content')
     <div class="container mt-5 animate__animated animate__fadeIn">
 
+        <div class="w-50">
+            <form action="" method="get">
+                <div class="input-group mb-3">
+                    <input name="search" type="text" class="form-control" placeholder="Search Loan">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+        
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="fw-bold text-primary d-flex align-items-center">
                 Loans recoveries

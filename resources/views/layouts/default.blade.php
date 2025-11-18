@@ -79,21 +79,21 @@
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                <a class="nav-link {{ request()->is('home') ? 'active' : '' }}" aria-current="page" href="/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('customers') }}">Customers</a>
+                <a class="nav-link {{ request()->is('customers') ? 'active' : '' }}" href="{{ url('customers') }}">Customers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ url('loans') }}">Loans</a>
+                <a class="nav-link {{ request()->is('loans') ? 'active' : '' }}" href="{{ url('loans') }}">Loans</a>
               </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('recovery') }}">Recovery</a>
+                    <a class="nav-link {{ request()->is('recovery') ? 'active' : '' }}" href="{{ url('recovery') }}">Recovery</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('logout') }}">Logout</a>
+                    <a class="nav-link " href="{{ url('logout') }}">Logout</a>
                 </li>
             </ul>
           </div>
