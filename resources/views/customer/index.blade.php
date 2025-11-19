@@ -21,6 +21,7 @@
                         <th>Phone Number</th>
                         <th>NIC</th>
                         <th>Created At</th>
+                        <th>Grade</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +33,17 @@
                             <td>{{ $customer->phone_number }}</td>
                             <td>{{ $customer->nic }}</td>
                             <td>{{ $customer->created_at->format('Y-m-d') }}</td>
+                            <td>
+                                 @if ($customer->grade == 'A')
+                                   <span class="badge bg-success ms-2">A</span>
+                                @elseif ($customer->grade == 'B')
+                                    <span class="badge bg-primary ms-2">B</span>
+                                 @elseif ($customer->grade == 'C')
+                                    <span class="badge bg-warning text-dark ms-2">C</span>
+                                @else
+                                    <span class="badge bg-danger ms-2">D</span>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
