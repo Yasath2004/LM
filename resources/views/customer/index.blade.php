@@ -34,6 +34,7 @@
                             <td>{{ $customer->nic }}</td>
                             <td>{{ $customer->created_at->format('Y-m-d') }}</td>
                             <td>
+<<<<<<< Updated upstream
                                  @if ($customer->grade == 'A')
                                    <span class="badge bg-success ms-2">A</span>
                                 @elseif ($customer->grade == 'B')
@@ -44,6 +45,15 @@
                                     <span class="badge bg-danger ms-2">D</span>
                                 @endif
                             </td>
+=======
+                                 @if($customer->grade == 'A' || $customer->grade == 'B')
+                                    <a href="#" class="btn btn-success btn-sm">End Term</a>
+                                @else
+                                    <a href="#" class="btn btn-warning btn-sm">Pass Term</a>
+                                @endif
+                                  
+                                </td>
+>>>>>>> Stashed changes
                         </tr>
                     @endforeach
                 </tbody>
